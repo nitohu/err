@@ -42,3 +42,11 @@ func (e Error) Error() string {
 
 	return msg
 }
+
+// Empty checks if the current Error object is empty, it returns true if the object is empty
+func (e Error) Empty() bool {
+	if e.messages == nil || len(e.messages) == 0 {
+		return true
+	}
+	return false
+}

@@ -16,3 +16,17 @@ func TestError(t *testing.T) {
 		t.Errorf("Message was incorrect.\n-----\nError Message:\n%s\n-----\nCorrect Error Message:\n%s\n", msg, correctMsg)
 	}
 }
+
+func TestEmpty(t *testing.T) {
+	var empty Error
+	var nonEmpty Error
+
+	nonEmpty.Init("TestEmpty()", "Error message")
+
+	if empty.Empty() == false {
+		t.Error("empty Error.Empty() function returned false")
+	}
+	if nonEmpty.Empty() == true {
+		t.Errorf("nonEmpty Error.Empty() function returned true")
+	}
+}
