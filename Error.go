@@ -10,7 +10,8 @@ type Error struct {
 	messages []errorMsg
 }
 
-func (e *accError) Init(origin, msg string) {
+// Init initializes the error type, adds the first msg
+func (e *Error) Init(origin, msg string) {
 	err := errorMsg{
 		origin: origin,
 		msg:    msg,
@@ -18,7 +19,8 @@ func (e *accError) Init(origin, msg string) {
 	e.messages = []errorMsg{err}
 }
 
-func (e *accError) AddTraceback(origin, msg string) {
+// AddTraceback adds a traceback to the error message stack
+func (e *Error) AddTraceback(origin, msg string) {
 	origin = "Traceback:\n" + origin
 	err := errorMsg{
 		origin: origin,
@@ -27,7 +29,8 @@ func (e *accError) AddTraceback(origin, msg string) {
 	e.messages = append(e.messages, err)
 }
 
-func (e accError) Error() string {
+// Error function which implements the error type
+func (e Error) Error() string {
 	var msg string
 
 	for i := 0; i < len(e.messages); i++ {
